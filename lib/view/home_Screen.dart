@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_api/view/detail_screen.dart';
 
 import '../bloc/home/home_bloc.dart';
 
@@ -22,11 +23,11 @@ class HomeScreen extends StatelessWidget {
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           if (state is HomeLoadingState) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is HomeErrorState) {
-            return Text("Error");
+            return const Text("Error");
           } else if (state is HomeSuccessState) {
             return ListView.builder(
                 itemCount: state.post.length,
@@ -34,7 +35,15 @@ class HomeScreen extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.all(2.0),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        print("Clecked ${state.post[index].id}");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailScreen(
+                                      postId: state.post[index].id.toString(),
+                                    )));
+                      },
                       child: Card(
                         color: Colors.white70,
                         elevation: 3,
@@ -43,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 "Title",
                                 style: TextStyle(
                                     decoration: TextDecoration.underline),

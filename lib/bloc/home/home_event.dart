@@ -2,4 +2,6 @@ part of 'home_bloc.dart';
 
 abstract class HomeEvent {}
 
-class GetHomeEvent extends HomeEvent{}
+class GetHomeEvent extends HomeEvent {}
+
+class GetPostById extends HomeEvent {}

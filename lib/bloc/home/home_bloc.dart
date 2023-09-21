@@ -30,8 +30,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       print("Response data in home bloc : ${responseList.runtimeType}");
       print("Response data in home bloc : ${postData[0].title}");
       emit(HomeSuccessState(post: postData));
-    } else {
+    } else if (response.apiStatus == ApiStatus.failure) {
       emit(HomeErrorState(errorMessage: "Error"));
     }
   }
+
+// void getPostById(GetPostById event, emit) async {
+//   String postId;
+//   emit(HomeLoadingState());
+//   final response = await homeRepository.getPostById();
+// }
 }

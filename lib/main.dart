@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_api/bloc/home/home_bloc.dart';
+import 'package:flutter_bloc_api/cubits/detail/post_detail_cubit.dart';
 import 'package:flutter_bloc_api/view/home_Screen.dart';
 
 void main() {
@@ -12,8 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeBloc(),
+    return MultiBlocProvider(
+      //create: (context) => HomeBloc(),
+      providers: [
+        BlocProvider(create: (context) => HomeBloc()),
+        BlocProvider(create: (context) => PostDetailCubit()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Bloc Api',

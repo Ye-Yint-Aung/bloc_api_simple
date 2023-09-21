@@ -11,4 +11,11 @@ class HomeRepository {
     final response = await httpService.get(endUrl: "posts");
     return response;
   }
+
+  Future<ResponseObj> getPostById(String postId) async {
+    final response = await httpService.get(endUrl: "posts" + postId);
+    return response;
+  }
+
+
 }
